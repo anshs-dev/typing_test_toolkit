@@ -39,11 +39,13 @@ function loadParagraph() {
 function initTyping() {
   let characters = typingText.querySelectorAll("span");
   let typedChar = inpField.value.split("")[charIndex];
+
   if (charIndex < characters.length - 1 && timeLeft > 0) {
     if (!isTyping) {
       timer = setInterval(initTimer, 1000);
       isTyping = true;
     }
+
     if (typedChar == null) {
       if (charIndex > 0) {
         charIndex--;
@@ -61,8 +63,12 @@ function initTyping() {
       }
       charIndex++;
     }
+
     characters.forEach((span) => span.classList.remove("active"));
     characters[charIndex].classList.add("active");
+
+    // ✅ Auto-Scrolling Feature
+    typingText.scrollTop = characters[charIndex].offsetTop - typingText.offsetTop;
 
     let wpm = Math.round(
       ((charIndex - mistakes) / 5 / (maxTime - timeLeft)) * 60
