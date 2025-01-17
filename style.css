@@ -63,7 +63,7 @@ body {
 }
 
 .content-box .typing-text {
-  overflow: hidden;
+  overflow-y: auto;  /* Enables vertical scrolling */
   max-height: 256px;
 }
 
