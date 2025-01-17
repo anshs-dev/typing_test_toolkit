@@ -25,13 +25,19 @@ let charIndex = mistakes = isTyping = 0;
 
 function loadParagraph() {
     const ranIndex = Math.floor(Math.random() * paragraphs.length);
-    typingText.innerHTML = "";
-    paragraphs[ranIndex].split("").forEach(char => {
-        console.log(char);
-        let span = `<span>${char}</span>`
+    typingText.innerHTML = "";  // Clear any existing content
+    let selectedParagraph = paragraphs[ranIndex];
+    
+    // Ensure each character is wrapped in a <span> tag and added to the display
+    selectedParagraph.split("").forEach(char => {
+        let span = `<span>${char}</span>`;
         typingText.innerHTML += span;
     });
+
+    // Highlight the first character
     typingText.querySelectorAll("span")[0].classList.add("active");
+
+    // Focus events
     document.addEventListener("keydown", () => inpField.focus());
     typingText.addEventListener("click", () => inpField.focus());
 }
